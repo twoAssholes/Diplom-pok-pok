@@ -1,0 +1,34 @@
+{% load admin_static %}{% load firstof from future %}
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+<script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="container">
+<form action="{% url 'polls:add' %}" method="post">
+{% csrf_token %}
+{{ pok }}</br>
+    </br>
+    Question text</br>
+    Question type</br>
+    Date published</br>
+    Pub author</br>
+    Question cost</br>
+    </br>
+    </br>
+    Choice text</br>
+    Question</br>
+    Choice cost positive</br>
+    Choice cost negative</br>
+    </br>
+
+<input type="submit" value="Add" />
+</form>
+</div>
+</body>
+</html>

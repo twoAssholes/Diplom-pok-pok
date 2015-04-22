@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<style>
+
+</style>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% for mod in questions %}
+    {{ mod.question_text }}
+    <ul>
+    {% for choice in mod.choice_set.all %}
+        <li>{{ choice.choice_text }}</li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+</body>
+</html>
