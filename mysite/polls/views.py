@@ -38,6 +38,6 @@ def results(request, question_id):
 
 def add(request):
     pok = u'pok'
-    get_model
+    # get_model
     # return HttpResponse("Hello, world. You're at the polls index.")
     return render(request, 'add.html', { 'pok': pok })
