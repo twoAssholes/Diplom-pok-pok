@@ -12,21 +12,13 @@
 <div id="container">
 <form action="{% url 'polls:add' %}" method="post">
 {% csrf_token %}
-{{ pok }}</br>
-    </br>
-    Question text</br>
-    Question type</br>
-    Date published</br>
-    Pub author</br>
-    Question cost</br>
-    </br>
-    </br>
-    Choice text</br>
-    Question</br>
-    Choice cost positive</br>
-    Choice cost negative</br>
-    </br>
-
+    {{ formset.management_form }}
+    <table>
+    {% csrf_token %}
+        {% for form in formset %}
+        {{ form }}
+        {% endfor %}
+    </table>
 <input type="submit" value="Add" />
 </form>
 </div>

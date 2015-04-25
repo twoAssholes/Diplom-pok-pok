@@ -1,8 +1,9 @@
-# from django.shortcuts import render
+from django.forms.models import modelformset_factory
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, render_to_response
 from django.core.urlresolvers import reverse
 from polls.models import *
+# from polls.form import *
 
 def index(request):
 
@@ -38,6 +39,14 @@ def results(request, question_id):
 
 def add(request):
     pok = u'pok'
-    # get_model
-    # return HttpResponse("Hello, world. You're at the polls index.")
-    return render(request, 'add.html', { 'pok': pok })
+    QuestionFormSet = modelformset_factory(Question)
+    if request.method == 'POST':
+        formset = QuestionFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = QuestionFormSet()
+    return render_to_response("add.html", {
+        "formset": formset,
+    })
