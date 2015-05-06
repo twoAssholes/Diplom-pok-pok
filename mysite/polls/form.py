@@ -1,14 +1,12 @@
-from django.forms import ModelForm
-from polls.models import *
-
-class QuestionsForm(ModelForm):
-    class Meta:
-        model = Question
-        fields = ['question_text', 'question_type', 'pub_date', 'pub_author', 'question_cost']
+from django import forms
 
 
-class ChoiceForm(ModelForm):
-    class Meta:
-        model = Choice
-        fields = ['choice_text0', 'choice_cost_positive', 'choice_cost_negative', 'question']
 
+class QuestionsForm(forms.Form):
+    question_text = forms.CharField(max_length=200)
+    question_type = forms.IntegerField()
+    question_cost = forms.IntegerField()
+    choice_text = forms.CharField(max_length=200)
+    choice_cost_positive = forms.IntegerField()
+    choice_cost_positive = forms.IntegerField()
+    choice_cost_negative = forms.IntegerField()

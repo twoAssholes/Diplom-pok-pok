@@ -1,0 +1,29 @@
+{% load admin_static %}{% load firstof from future %}
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
+<script type="text/javascript">window.__admin_media_prefix__ = "{% filter escapejs %}{% static "admin/" %}{% endfilter %}";</script>
+<script type="text/javascript">window.__admin_utc_offset__ = "{% filter escapejs %}{% now "Z" %}{% endfilter %}";</script>
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="container">
+<form action="{% url 'polls:add' %}" method="post">
+{% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+    {% csrf_token %}
+        {% for form in formset %}
+        {{ form }}
+            {% for formp in formset.form.choice_text_factopy %}
+                {{ formp }}
+            {% endfor %}
+        {% endfor %}
+    </table>
+<input type="submit" value="Add" />
+</form>
+</div>
+</body>
+</html>

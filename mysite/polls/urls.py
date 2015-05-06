@@ -9,4 +9,5 @@ urlpatterns = patterns('',
     url(r'^(?P<question_id>\d+)/results/$', views.results, name='results'),
     url(r'^(?P<question_id>\d+)/vote/$', views.vote, name='vote'),
     url(r'^add/$', views.add, name='add'),
+    url(r'^test/$', views.test, name='test'),
 )
