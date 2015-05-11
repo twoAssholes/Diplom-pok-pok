@@ -28,8 +28,8 @@ body {
 div,
 .std { 
 	display: block;
-	margin: 8px ;
-	padding: 10px 20px;
+	margin: 1em;
+	padding: 0.5em 1em;
 	border-radius: 25px}
 /* Переопределение внешнего вида компонентов */
 
@@ -44,18 +44,19 @@ input[type="radio"] + label{
 }
 input[type="checkbox"] + label::before,
 input[type="radio"] + label::before{
+	text-align: center;
 	font-size: 1.2em;
 	display: inline-block;
 	height: 1em;
 	width: 1em;
 	margin: auto .6em auto 0;
-	border-radius: 25px;
 	background-color: var(--disabled-color);
 	vertical-align: middle;
 	cursor: pointer;
 }
 	/* состояния checkbox */
 	input[type="checkbox"] + label::before{
+		border-radius: 3px;
 		content: "";
 	}
 	input[type="checkbox"]:checked + label::before{
@@ -64,6 +65,7 @@ input[type="radio"] + label::before{
 	}
 	/* Состояния radiobutton */
 	input[type="radio"] + label::before{
+		border-radius: 100%;
 		content: "";
 	}
 	input[type="radio"]:checked + label::before{
