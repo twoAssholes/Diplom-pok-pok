@@ -8,3 +8,4 @@ from polls.models import *
 admin.site.register(Question)
 admin.site.register(Choice)
 admin.site.register(Vote)
+admin.site.register(User)

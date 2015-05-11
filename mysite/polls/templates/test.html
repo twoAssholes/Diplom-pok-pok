@@ -10,19 +10,23 @@
 </head>
 <body>
 <div id="container">
-<form action="{% url 'polls:add' %}" method="post">
-{% csrf_token %}
-    {{ formset.management_form }}
-    <table>
-    {% csrf_token %}
-        {% for form in formset %}
-        {{ form }}
-            {% for formp in formset.form.choice_text_factopy %}
-                {{ formp }}
-            {% endfor %}
+<form action="{% url 'polls:vote' %}" method="post">
+
+    {% for quest in formset %}
+
+        {{ quest.question_text }}
+
+        <br>
+        {% for choice in quest.question_choice %}<br>
+            <input type="{{ quest.question_input_type }}"  name="{{ quest.question_id }}" value="{{ choice.choice_id }}"><span>{{ choice.choice_text }}</span>
+
         {% endfor %}
-    </table>
-<input type="submit" value="Add" />
+        <br>
+        ===========================
+        <br>
+    {% endfor %}
+
+<input type="submit" value="Ответить" />
 </form>
 </div>
 </body>
