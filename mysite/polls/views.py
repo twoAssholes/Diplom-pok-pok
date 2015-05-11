@@ -81,20 +81,20 @@ c = make_context()
 c_js = make_context_js()
 
 
-# def test(request):
-#
-#     return render_to_response('test.html', {
-#         'formset': c_js,
-#     })
-
-#для jsona
 def test(request):
 
-    context_js = json.dumps(c_js, ensure_ascii=False)
-
-    return render_to_response('jstext.html', {
-        'formset': context_js,
+    return render_to_response('test.html', {
+        'formset': c_js,
     })
+
+#для jsona
+# def test(request):
+#
+#     context_js = json.dumps(c_js, ensure_ascii=False)
+#
+#     return render_to_response('jstext.html', {
+#         'formset': context_js,
+#     })
 
 
 def vote(request):
@@ -110,14 +110,42 @@ def vote(request):
             for quest_index in c:
                 if quest_index['question_id'] == int(keys_c[i]):
                     quest = quest_index
-                    # quest['question_type'] = output_dict[quest['question_type']]
             asda = 'asd'
-            # тип 1.2
+            # тип вопроса 1.2
             if quest['question_type'] == 1:
                 BSum = BSum + max([v['choice_cost_positive'] for v in quest['question_choice']])
+                for choice_index in quest['question_choice']:
+                    if choice_index['choice_id'] == int(choice_list[0]):
+                        choice_cost = choice_index['choice_cost_positive']
+                YSum = YSum + choice_cost
+            #остальные типы вопросов
             else:
-                BSum = BSum + 0
-
+                BSum = BSum + quest['question_cost_negative']
+                if quest['question_type'] == 3:
+                    for choice_index in quest['question_choice']:
+                        if choice_index['choice_id'] == int(choice_list[0]):
+                            if choice_index['choice_is_true']:
+                                BSum = BSum - quest['question_cost_negative'] + quest['question_cost_positive']
+                                YSum = YSum + quest['question_cost_positive']
+                if quest['question_type'] == 2:
+                    true_index = 0
+                    len_index = 0
+                    for choice_index in quest['question_choice']:
+                        len_index += 1
+                        try:
+                            if int(choice_list[len_index]) == choice_index['choice_id']:
+                                if choice_index['choice_is_true']:
+                                    true_index += 1
+                        except:
+                            pass
+        rating = 100 * (YSum/BSum)
+        ok = 'неудача'
+        if rating > 50:
+            ok = 'Удовлетворительно'
+        elif rating > 65:
+            ok = 'Хорошо'
+        elif rating > 80:
+            ok = 'Отлично'
         return render_to_response("vote.html", {
-            "vote": kwargs,
+            "vote": ok,
         })
