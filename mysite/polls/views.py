@@ -129,23 +129,25 @@ def vote(request):
                                 YSum = YSum + quest['question_cost_positive']
                 if quest['question_type'] == 2:
                     true_index = 0
-                    len_index = 0
+                    true_choice = 0
                     for choice_index in quest['question_choice']:
-                        len_index += 1
-                        try:
-                            if int(choice_list[len_index]) == choice_index['choice_id']:
+                        if choice_index['choice_is_true']:
+                            true_index += 1
+                        for choice_selected in choice_list:
+                            if int(choice_selected) == choice_index['choice_id']:
                                 if choice_index['choice_is_true']:
-                                    true_index += 1
-                        except:
-                            pass
+                                    true_choice += 1
+
+                    if true_choice == true_index:
+                        YSum = YSum + quest['question_cost_positive']
         rating = 100 * (YSum/BSum)
         ok = 'неудача'
-        if rating > 50:
-            ok = 'Удовлетворительно'
+        if rating > 80:
+            ok = 'Отлично'
         elif rating > 65:
             ok = 'Хорошо'
-        elif rating > 80:
-            ok = 'Отлично'
+        elif rating > 50:
+            ok = 'Удовлетворительно'
         return render_to_response("vote.html", {
             "vote": ok,
         })
