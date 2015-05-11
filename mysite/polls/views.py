@@ -81,20 +81,20 @@ c = make_context()
 c_js = make_context_js()
 
 
-def test(request):
-
-    return render_to_response('test.html', {
-        'formset': c_js,
-    })
-
-#для jsona
 # def test(request):
 #
-#     context_js = json.dumps(c_js, ensure_ascii=False)
-#
-#     return render_to_response('jstext.html', {
-#         'formset': context_js,
+#     return render_to_response('test.html', {
+#         'formset': c_js,
 #     })
+
+#для jsona
+def test(request):
+
+    context_js = json.dumps(c_js, ensure_ascii=False)
+
+    return render_to_response('jstext.html', {
+        'formset': context_js,
+    })
 
 
 def vote(request):
