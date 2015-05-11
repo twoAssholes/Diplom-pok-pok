@@ -1,0 +1,148 @@
+/* Переменные и короткие классы*/
+:root {
+	/*--question-text-color: rgba(255,255,255,0.5);
+	--even-child-color: rgba(255,255,255,0.3);
+	--odd-child-color: rgba(0,0,0,0.3);
+	--container-color: #bbb;*/
+	--question-text-color: #606060;
+	--even-child-color: #707070;
+	--odd-child-color: #909090;
+	--container-color: #A0A0A0;
+
+	--checked-color: #BABABA;
+	--disabled-color: #606060;
+}
+.hidden {display: none;}
+.visible {display: inline;}
+
+/* Тело сраниы и базовые свойства текста */
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	color: #000000;
+	height: 100%;
+	width: 100%;
+	margin: 50px 0;
+	padding: 0px;
+}
+/* Стандартные отступы блоков */
+div,
+.std { 
+	display: block;
+	margin: 8px ;
+	padding: 10px 20px;
+	border-radius: 25px}
+/* Переопределение внешнего вида компонентов */
+
+/* Checkbox и Radio */
+input[type="checkbox"],
+input[type="radio"] {
+	display: none;
+}
+input[type="checkbox"] + label,
+input[type="radio"] + label{
+	cursor: pointer;
+}
+input[type="checkbox"] + label::before,
+input[type="radio"] + label::before{
+	font-size: 1.2em;
+	display: inline-block;
+	height: 1em;
+	width: 1em;
+	margin: auto .6em auto 0;
+	border-radius: 25px;
+	background-color: var(--disabled-color);
+	vertical-align: middle;
+	cursor: pointer;
+}
+	/* состояния checkbox */
+	input[type="checkbox"] + label::before{
+		content: "";
+	}
+	input[type="checkbox"]:checked + label::before{
+		content: "✔";
+		background-color: var(--checked-color);
+	}
+	/* Состояния radiobutton */
+	input[type="radio"] + label::before{
+		content: "";
+	}
+	input[type="radio"]:checked + label::before{
+		background-color: var(--checked-color);
+	}
+/* Базывые элементы управления */
+	/* класс расцветки элементов управления */
+	.controlElement {
+		cursor: pointer;
+		background-color: green;
+	}
+	.controlElement:hover {
+		background-color: red;
+	}
+	/* кнопка завершения тестирования */
+	input#finishButton {
+		display:none;
+	}
+	input#finishButton + label{
+		cursor: pointer;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+	}
+	/* предыдущий вопрос и следующий вопрос */
+	#nextQuestion,
+	#previousQuestion{
+		position: fixed;
+		bottom: 50%;
+		content: "";
+	}
+	#nextQuestion {
+		right:0;
+	}
+	#nextQuestion::before {
+		content: "→";
+	}
+	#previousQuestion {
+		left:0;
+	}
+	#previousQuestion::before {
+		content: "←";
+	}
+/* Заголовок */
+#header {}
+
+/* "Подвал" */
+#footer {}
+
+/* Контейнер */
+#container,
+#header,
+#footer {
+	width: 800px;
+	margin: 10px auto;
+	background-color: var(--container-color);
+}
+
+/* Представление вопросов */
+
+	/* Содержание вопроса */
+	.question-text {
+		font-weight: bold;
+		font-size: 110%;
+		background-color: var(--question-text-color);
+	}
+
+	/* Варианты ответов */
+	div.option-block {
+		padding: 0;
+		margin: 0;
+	}
+	div.option {
+		margin-left: 3em;
+	}
+	/* Выделение чередующихся вариантов
+	   применяется только к отображаемым элементам
+
+	   even - чётные
+	   odd - нечётные */
+	.visible .option:nth-child(even){ background-color: var(--even-child-color);}
+	.visible .option:nth-child(odd){ background-color: var(--odd-child-color);}

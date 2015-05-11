@@ -1,0 +1,56 @@
+
+<!-- saved from url=(0033)http://127.0.0.1:8000/polls/test/ -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="js/nobuild.js"></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+	<div id="header">
+	</div>
+	<div id="nextQuestion" class="controlElement">
+			
+	</div>
+	<div id="container">
+		<form action="http://127.0.0.1:8000/polls/vote/" method="post">
+
+		    
+			<div class="question-block visible">
+				<div class="question-text">
+		        	Первый тестовый вопрос
+		        </div>
+		        <div class="option-block">
+			        <div class="option"><input type="checkbox" id="xxx" class="option" name="Первый тестовый вопрос" value="1" checked hidden><label for="xxx">Первый ответ</label></div>
+			        <div class="option"><input type="checkbox" id="xyx" class="option" name="Первый тестовый вопрос" value="2" checked hidden><label for="xyx">Воторой ответ</label></div>
+			        <div class="option">ti huy</div>
+		        </div>
+		    </div>
+
+			<div class="question-block hidden">
+				<div class="question-text">
+		        Второй тестовый вопрос
+		        </div>
+		        <div class="option-block">
+		        	<div class="option"><input type="radio" class="option" name="Второй тестовый вопрос" value="3"><label>Третий ответ</label></div>
+		        	<div class="option"><input type="radio" class="option" name="Второй тестовый вопрос" value="4"><label>Четвертый ответ</label></div>
+	        	</div>
+		    </div>
+
+		<input type="submit" value="" id="finishButton">
+		<label class="std controlElement" for="finishButton">
+			Завершить тестирование
+		</label>
+		</form>
+	</div>
+
+
+		<div id="previousQuestion" class="controlElement">
+			
+	</div>
+	<div id="footer">
+	</div>
+</body>
+</html>
